@@ -1,5 +1,6 @@
-package com.example.antonino.avvisami;
+package com.example.antonino.avvisami.modello;
 
+import android.location.Location;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -35,26 +36,41 @@ public class Stazione {
     private String nome;
     private String lat;
     private String lon;
-
-    public String getRegID() {
-        return regID;
-    }
-
-    public void setRegID(String regID) {
-        this.regID = regID;
-    }
-
+    private Location loc;
     private String regID;
+    private float distance;
+    private boolean passato;
+    private boolean passato2;
+
+
+
+    private boolean notificato;
+    private boolean notificato2;
 
     public Stazione(){
+        this.passato = false;
+        this.passato2 = false;
+        this.notificato = false;
+        this.notificato2 = false;
     }
 
     public Stazione(String id, String nome, String lat, String lon){
         this.id = id;
         this.nome = nome;
 
+        this.loc = new Location("dummyprovider");
+        this.loc.setLatitude(Double.parseDouble(lat));
+        this.loc.setLongitude(Double.parseDouble(lon));
         this.lat = lat;
         this.lon = lon;
+    }
+
+    public Location getLoc() {
+        return loc;
+    }
+
+    public void setLoc(Location loc) {
+        this.loc = loc;
     }
 
     public String getId() {
@@ -89,6 +105,50 @@ public class Stazione {
         this.lon = lon;
     }
 
+    public String getRegID() {
+        return regID;
+    }
+
+    public void setRegID(String regID) {
+        this.regID = regID;
+    }
+
+    public float getDistance() {
+        return distance;
+    }
+
+    public void setDistance(float distance) {
+        this.distance = distance;
+    }
+
+    public boolean isPassato() {
+        return passato;
+    }
+
+    public void setPassato(boolean passato) {
+        this.passato = passato;
+    }
+    public boolean isPassato2() {
+        return passato2;
+    }
+
+    public void setPassato2(boolean passato) {
+        this.passato2 = passato;
+    }
+    public boolean isNotificato() {
+        return notificato;
+    }
+
+    public void setNotificato(boolean notificato) {
+        this.notificato = notificato;
+    }
+    public boolean isNotificato2() {
+        return notificato2;
+    }
+
+    public void setNotificato2(boolean notificato) {
+        this.notificato2 = notificato;
+    }
 
     public void print() {
         Log.d("Stazione", id + " - " + nome + " - " + regID + " lat: " + lat + " lon: "+ lon);
